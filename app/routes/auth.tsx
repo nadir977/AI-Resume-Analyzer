@@ -1,11 +1,6 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { usePuterStore } from "~/lib/puter"; 
-
-export const meta = () => ([
-  { title: "Resumind | Auth" },
-  { name: "description", content: "Log into your account" },
-]);
+import { usePuterStore } from "~/lib/puter";
 
 const Auth = () => {
   const { isLoading, auth } = usePuterStore();
@@ -13,10 +8,11 @@ const Auth = () => {
   const next = location.search.split("next=")[1];
   const navigate = useNavigate();
 
-
   useEffect(() => {
-    if (auth.isAuthenticated) navigate(next);
-  }, [auth.isAuthenticated, next]);
+    if (auth.isAuthenticated) {
+      navigate(next || "/");
+    }
+  }, [auth.isAuthenticated, next, navigate]);
 
   return (
     <main className="bg-[url('/images/bg-auth.svg')] bg-cover min-h-screen flex items-center justify-center">
