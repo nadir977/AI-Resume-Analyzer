@@ -8,7 +8,7 @@ import { usePuterStore } from "~/lib/puter";
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Resumind" },
-    { name: "description", content: "Smart feedback for your dream" },
+    { name: "description", content: "Smart feedback for your dream job!" },
   ];
 }
 
@@ -30,8 +30,7 @@ export default function Home() {
 
       const parsedResumes = resumes?.map(
         (resume) => JSON.parse(resume.value) as Resume
-      );
-      console.log("parsedResumes", parsedResumes);
+      ); 
       setResumes(parsedResumes || []);
       setLoadingResumes(false);
     };
